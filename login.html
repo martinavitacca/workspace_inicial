@@ -9,21 +9,67 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <style>
     body {
       background-color: rgb(248, 249, 250);
     }
+   
+    .h-custom {
+      height: calc(100% - 73px);
+    }   
   </style>
 </head>
 
 <body>
-  <main class="mt-5">
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+  <section class="vh-100">
+    <div class="container-fluid h-custom">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-9 col-lg-6 col-xl-5">
+          <img src="/img/login.png"
+            class="img-fluid" alt="Sample image">
+        </div>
+        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+          <form>
+            <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+              <p class="lead fw-normal mb-0 me-3">Iniciar Sesión</p><br><br>               
+            </div> 
+              
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+              <input type="email" id="correo" class="form-control form-control-lg"
+                placeholder="Please enter an email adress" />
+              <label class="form-label" for="correo">Email</label>
+            </div>
+  
+            <!-- Password input -->
+            <div class="form-outline mb-3">
+              <input type="password" id="clave" class="form-control form-control-lg"
+                placeholder="Enter password" />
+              <label class="form-label" for="clave">Contraseña</label>
+            </div>  
+  
+            <div class="text-center text-lg-start mt-4 pt-2">
+              <button type="button" class="btn btn-primary btn-lg"
+                style="padding-left: 2.5rem; padding-right: 2.5rem;" id="entrar">Login
+              </button>
+            </div>
+
+            <div class="alert alert-success alert-dismissible fade" role="alert" id="alert-success">
+              <p>Bienvenido!</p>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          
+            <div class="alert alert-danger alert-dismissible fade" role="alert" id="alert-danger">
+              <p>Faltan completar datos!</p>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+         
+          </form>
+        </div>
       </div>
     </div>
-  </main>
+  </section>
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
