@@ -15,14 +15,14 @@ document.addEventListener("DOMContentLoaded", function(){
     let email = localStorage.getItem('email')
 
     if(email == null){
-        alert("Por favor iniciar sesión");
-        location.href = "login.html"
+        alert("Por favor, iniciar sesión para continuar");
+        location.href = "login.html";
     }
 
     document.getElementById("cerrar").addEventListener("click",()=>{
-        alert("Sesión cerrada!");
-        window.location = "index.html"
         localStorage.clear();
+        alert("Sesión cerrada!");
+        window.location = "index.html";
     });
 
 });

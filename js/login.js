@@ -4,12 +4,13 @@ function login(){
 
 
     if (email === "" || pw === ""){
-        alert("Falta ingresar datos");       
+        alert("Falta ingresar datos!")
     }
     else {
         localStorage.setItem("email",email);
-        alert("Ha iniciado sesión correctamente");    
+        alert("Sesión iniciada correctamente");  
         location.href = 'index.html';
+        
     }  
 
 }
