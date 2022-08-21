@@ -4,25 +4,44 @@ function login(){
 
 
     if (email === ""){
-        alert("Falta ingresar datos!")
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Parece que falta completar datos!',
+            confirmButtonColor: '#3085d6'
+        });
         document.getElementById('error').style.display = 'block';
     }
-
     else if (pw === ""){
-        alert("Falta ingresar datos!")
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Parece que falta completar datos!',
+            confirmButtonColor: '#3085d6'
+        });
         document.getElementById('error2').style.display = 'block';
     }
     else {
-        localStorage.setItem("email",email);
-        alert("Sesión iniciada correctamente");  
-        location.href = 'index.html';
-        
-    }  
-
+        Swal.fire({
+            title: 'Confirmando su identidad, espere un momento por favor...',
+            confirmButtonColor: '#3085d6'})
+        .then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                title: 'Sesión iniciada correctamente',
+                icon: 'success',
+                confirmButtonColor: '#3085d6'})
+            .then( ()=> {
+                localStorage.setItem('email',email);
+                location.href = 'index.html';
+                });
+            }
+        });
+    }
 }
-
+    
 document.addEventListener('DOMContentLoaded',()=>{
     document.getElementById('entrar').addEventListener("click",()=>{
-        login();
-    })
+        login();       
+    });
 });

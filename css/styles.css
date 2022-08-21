@@ -191,9 +191,6 @@ a.custom-card:hover {
 
 #cerrar {
   display: none;
-  background-color: #0087F7;
-  border-radius: 5px;
-  color: white;
 }
 
 #error,

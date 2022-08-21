@@ -16,19 +16,32 @@ document.addEventListener("DOMContentLoaded", function(){
 
     if(email == null){
         
-        alert("Por favor, iniciar sesión para continuar");
-        location.href = "login.html";
+        Swal.fire({
+            title: 'Debe iniciar sesión para poder continuar',
+            confirmButtonColor: '#3085d6'})
+        .then((result) => {
+            if (result.isConfirmed) {
+              location.href = 'login.html';
+            }
+        });
     }
     else{
         document.getElementById('cerrar').style.display = 'block'; 
     }
 
     document.getElementById("cerrar").addEventListener("click",()=>{
-        localStorage.clear();
-        alert("Sesión cerrada!");
-        location.href = "index.html";
+   
+        Swal.fire({
+            title: 'Sesión cerrada con éxito!',
+            icon: 'success',
+            confirmButtonColor: '#3085d6'})
+        .then((result) => {
+            if (result.isConfirmed) {
+              location.href = 'login.html';
+              localStorage.clear();
+            }
+        });        
     });
-
 });
 
 
