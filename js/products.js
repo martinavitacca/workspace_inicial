@@ -1,14 +1,73 @@
+const ID = localStorage.getItem('catID');
+const FROM_CHEAP_TO_EXPENSIVE = "Less $";
+const FROM_EXPENSIVE_TO_CHEAP = "More $";
+const ORDER_PROD_SOLD = "Vendidos";
+
 let productsArray = [];
+
+let minCost = undefined
+let maxCost = undefined
+let range = undefined
+
+
+function sortProducts(criteria, array){
+    let result = [];
+    if (criteria === FROM_CHEAP_TO_EXPENSIVE)
+    {
+        result = array.sort((a, b)=> a.cost - b.cost)
+
+    }else if (criteria === FROM_EXPENSIVE_TO_CHEAP){
+        
+        result = array.sort((a, b)=> b.cost - a.cost)
+
+    }else if (criteria === ORDER_PROD_SOLD){
+        result = array.sort((a, b)=> b.soldCount - a.soldCount)
+    }
+
+    return result;
+}
+
+function sortAndShowProducts(criteria){
+        
+    productsArray = sortProducts(criteria, productsArray);
+
+    showProductsList(productsArray);
+}
+
+function rangeOfPrices(){
+    let minCost = document.getElementById('fromCostMin').value;
+    let maxCost = document.getElementById('toCostMax').value;
+
+    let range = productsArray.filter(products =>{
+        return (products.cost >= minCost && products.cost <= maxCost)    
+    });
+
+    showProductsList(range);
+}
+
+function searchProdcuts() {
+    
+    let searching = document.getElementById('buscar').value;
+
+    let found = productsArray.filter(products =>{
+        return (products.name.toLowerCase().indexOf(searching.toLowerCase()) > -1) || (products.description.toLowerCase().indexOf(searching.toLowerCase()) > -1)
+
+    });
+
+    showProductsList(found);
+}
+
 
 function showProductsList(array){
     
-    let htmlContentToAppend = "";
+    let cargarDatosEnHtml = "";
     
-    for(let i = 0; i < array.products.length; i++){ 
+    for(let i = 0; i < array.length; i++){ 
         
-        let products = array.products[i];
-        
-        htmlContentToAppend += `
+        let products = array[i];
+
+        {
+            cargarDatosEnHtml += `
             <div onclick="setCatID(${products.id})" class="list-group-item list-group-item-action cursor-active">
                 <div class="row">
                     <div class="col-3">
@@ -25,17 +84,47 @@ function showProductsList(array){
             </div>
             `
         }
+        
+        document.getElementById("productos").innerHTML = cargarDatosEnHtml;
 
-    document.getElementById("products-autos").innerHTML = htmlContentToAppend;
+    }
 }
 
 document.addEventListener("DOMContentLoaded", ()=>{
-    getJSONData(PRODUCTOS_URL).then(function(resultObj){
+    
+    getJSONData(PRODUCTS_URL + ID + EXT_TYPE).then(function(resultObj){
         if (resultObj.status === "ok")
         {
-            productsArray = resultObj.data;
-            showProductsList(productsArray);
+           productsArray = resultObj.data.products;
+           showProductsList(productsArray);
+           document.getElementById('nombre-categoria').innerHTML = resultObj.data.catName;
         }
     });
-});
 
+    document.getElementById('sortCheaper').addEventListener('click', ()=>{
+        sortAndShowProducts(FROM_CHEAP_TO_EXPENSIVE);
+    });
+
+    document.getElementById('sortExpensive').addEventListener('click', ()=>{
+        sortAndShowProducts(FROM_EXPENSIVE_TO_CHEAP);
+    });
+
+    document.getElementById('sortBySold').addEventListener('click', ()=>{
+        sortAndShowProducts(ORDER_PROD_SOLD);
+    });
+
+    document.getElementById("filtrarCost").addEventListener("click", ()=>{      
+        rangeOfPrices();
+    });
+
+    document.getElementById('clearFiltro').addEventListener("click", ()=>{
+        document.getElementById('fromCostMin').value = "";
+        document.getElementById('toCostMax').value = "";
+
+        showProductsList(productsArray);
+    });
+
+    document.getElementById('buscar').addEventListener('keyup', ()=>{
+        searchProdcuts();
+    });
+});

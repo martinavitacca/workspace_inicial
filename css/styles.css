@@ -192,9 +192,3 @@ a.custom-card:hover {
 #cerrar {
   display: none;
 }
-
-#error,
-#error2 {
-  display: none;
-  color: red;
-}

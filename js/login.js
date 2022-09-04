@@ -3,40 +3,36 @@ function login(){
     let pw = document.getElementById("clave").value;
 
 
-    if (email === ""){
+    if (email === "" || pw === ""){
         Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Parece que falta completar datos!',
-            confirmButtonColor: '#3085d6'
+            title: 'Por favor, completar ambos campos',
+            confirmButtonColor: '#3085d6', 
+            showClass: {
+              popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+              popup: 'animate__animated animate__fadeOutUp'
+            }
         });
-        document.getElementById('error').style.display = 'block';
-    }
-    else if (pw === ""){
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Parece que falta completar datos!',
-            confirmButtonColor: '#3085d6'
-        });
-        document.getElementById('error2').style.display = 'block';
     }
     else {
         Swal.fire({
-            title: 'Confirmando su identidad, espere un momento por favor...',
-            confirmButtonColor: '#3085d6'})
+            title: 'Sesión iniciada correctamente',
+            icon: 'success',
+            confirmButtonColor: '#3085d6',
+            showClass: {
+              popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+              popup: 'animate__animated animate__fadeOutUp'
+            }})
         .then((result) => {
             if (result.isConfirmed) {
-                Swal.fire({
-                title: 'Sesión iniciada correctamente',
-                icon: 'success',
-                confirmButtonColor: '#3085d6'})
-            .then( ()=> {
                 localStorage.setItem('email',email);
                 location.href = 'index.html';
-                });
-            }
-        });
+            };
+        });         
+           
     }
 }
     
