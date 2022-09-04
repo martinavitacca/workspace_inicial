@@ -10,26 +10,26 @@ let maxCost = undefined
 let range = undefined
 
 
-function sortProducts(criteria, array){
+function sortProducts(sort, array){
     let result = [];
-    if (criteria === FROM_CHEAP_TO_EXPENSIVE)
+    if (sort === FROM_CHEAP_TO_EXPENSIVE)
     {
         result = array.sort((a, b)=> a.cost - b.cost)
 
-    }else if (criteria === FROM_EXPENSIVE_TO_CHEAP){
+    }else if (sort === FROM_EXPENSIVE_TO_CHEAP){
         
         result = array.sort((a, b)=> b.cost - a.cost)
 
-    }else if (criteria === ORDER_PROD_SOLD){
+    }else if (sort === ORDER_PROD_SOLD){
         result = array.sort((a, b)=> b.soldCount - a.soldCount)
     }
 
     return result;
 }
 
-function sortAndShowProducts(criteria){
+function showSortedProducts(sort){
         
-    productsArray = sortProducts(criteria, productsArray);
+    productsArray = sortProducts(sort, productsArray);
 
     showProductsList(productsArray);
 }
@@ -102,15 +102,15 @@ document.addEventListener("DOMContentLoaded", ()=>{
     });
 
     document.getElementById('sortCheaper').addEventListener('click', ()=>{
-        sortAndShowProducts(FROM_CHEAP_TO_EXPENSIVE);
+        showSortedProducts(FROM_CHEAP_TO_EXPENSIVE);
     });
 
     document.getElementById('sortExpensive').addEventListener('click', ()=>{
-        sortAndShowProducts(FROM_EXPENSIVE_TO_CHEAP);
+        showSortedProducts(FROM_EXPENSIVE_TO_CHEAP);
     });
 
     document.getElementById('sortBySold').addEventListener('click', ()=>{
-        sortAndShowProducts(ORDER_PROD_SOLD);
+        showSortedProducts(ORDER_PROD_SOLD);
     });
 
     document.getElementById("filtrarCost").addEventListener("click", ()=>{      
