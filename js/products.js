@@ -57,6 +57,10 @@ function searchProdcuts() {
     showProductsList(found);
 }
 
+function setProductID(id) {
+    localStorage.setItem("ProductID", id);
+    location.href = "product-info.html"
+}
 
 function showProductsList(array){
     
@@ -66,9 +70,9 @@ function showProductsList(array){
         
         let products = array[i];
 
-        {
+        
             cargarDatosEnHtml += `
-            <div onclick="setCatID(${products.id})" class="list-group-item list-group-item-action cursor-active">
+            <div onclick="setProductID(${products.id})" class="list-group-item list-group-item-action cursor-active">
                 <div class="row">
                     <div class="col-3">
                         <img src="${products.image}" class="img-thumbnail">
@@ -83,7 +87,7 @@ function showProductsList(array){
                 </div>
             </div>
             `
-        }
+        
         
         document.getElementById("productos").innerHTML = cargarDatosEnHtml;
 

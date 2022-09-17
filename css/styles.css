@@ -192,3 +192,12 @@ a.custom-card:hover {
 #cerrar {
   display: none;
 }
+
+.card {
+  width: 444px;
+  margin: 10px;
+}
+
+.estrellas{
+  color: gold;
+}

@@ -42,10 +42,67 @@
     </div>
   </nav>
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+    <div class="container py-4 my-4 mx-auto d-flex flex-column">
+      
+      <!-- Muestra la primer parte de la información del json -->
+      <div class="header" id="contenedor"></div>
+
+      
+      <div class="container-body w-auto h-auto">
+        <div id="carouselExampleDark" class="carousel carousel-dark slide"data-bs-ride="carousel">
+          
+          <!-- Muestra las imágenes del carousel -->          
+          <div id="imagenes" class="carousel-inner"></div>
+          
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button> 
+        </div>     
+      </div><br><hr>
+
+      <!-- Muestra los productos similares -->
+      <div class="d-flex flex-column mt-5 col-md-6 myt">
+        <h4>Productos de la misma categoría:</h4>
       </div>
+      <div id="similares" class="d-flex justify-content-center container"></div><br><hr>
+
+      <!-- Muestra los comentarios -->
+      <div class="d-flex flex-column mt-5 col-md-6 myt">
+        <h4>Comentarios:</h4>
+      </div>
+      
+      <div id="comentarios"></div><br><hr>     
+      
+      <div class="d-flex flex-column mt-5 col-md-6 myt">
+        <h4>Comentar:</h4>
+      </div>
+      
+      <!-- Input para los futuros comentarios-->
+      <div class="row d-flex flex-column mt-3 col-md-10 myt">
+        <div class="col-md-6">
+          <div class="comment-area">
+            <textarea class="form-control" placeholder="Share your opinion here..." rows="4" id="comente"></textarea>
+          </div><br>
+          <div class="input-group">
+            <select class="form-select" id="puntos">
+              <option selected>Rate us!</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+          <div class="pull-right"><br>
+            <button class="btn btn-primary btn-sm" id="send">Enviar</button>      
+          </div><br>
+        </div>
+      </div>    
     </div>
   </main>
   <footer class="text-muted">
