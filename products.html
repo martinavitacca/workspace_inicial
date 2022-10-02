@@ -32,11 +32,24 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
+          
+          <!-- User Menu -->
           <li class="nav-item">
+            <div class="collapse navbar-collapse">
+              <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle font-weight-bold" href="#" id="usuario" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="my-profile.html"><i class="far fa-address-card"></i> Mi Perfil</a></li>
+                    <li><a class="dropdown-item" href="cart.html"><i class="fas fa-shopping-cart"></i> Carrito</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-primary text-center" href="#" id="cerrando"><i class="fas fa-lock"></i> Cerrar Sesión</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
           </li>
-          <li class="nav-item d-flex">
-            <a class="nav-link" href="my-profile.html" id="usuario"></a>
-            <button type="button" class="btn btn-primary btn-sm" id="cerrar">Cerrar Sesión</button>
+
         </ul>
       </div>
     </div>

@@ -62,11 +62,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
     });
   }
   else{
-    document.getElementById('cerrar').style.display = 'block';
-    document.getElementById('usuario').innerHTML = email;
+    document.getElementById('usuario').innerHTML = email.split('@')[0];
   }
 
-  document.getElementById("cerrar").addEventListener("click",()=>{
+  document.getElementById("cerrando").addEventListener("click",()=>{
     Swal.fire({
       icon: 'success',
       title: 'Sesión cerrada con éxito!',

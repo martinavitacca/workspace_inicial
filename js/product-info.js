@@ -3,6 +3,12 @@ const PROD_ID = localStorage.getItem('ProductID');
 let infoProducts = [];
 let comments = [];
 
+
+function setProductID(id) {
+    localStorage.setItem("ProductID", id);
+    location.href = "product-info.html"
+}
+
 function showProductInfo (array){
 
     cargarInfoEnHtml = `
@@ -19,11 +25,17 @@ function showProductInfo (array){
             </div>
         </div>
     `
+    
+    document.getElementById('contenedor').innerHTML = cargarInfoEnHtml;
 
-    cargarImagenesEnHtml = `
+    
+    // Carga imagenes para el Carousel
+
+    cargarImagenesEnHtml = `    
         <div class="carousel-item active">
             <img src="${array.images[0]}" class="d-block w-100">
         </div>
+        </div> 
         <div class="carousel-item">
             <img src="${array.images[1]}" class="d-block w-100">
         </div>
@@ -35,37 +47,40 @@ function showProductInfo (array){
         </div>
     `
 
-    cargarProductoSimilarEnHtml = `
-        <div class="card p-3 bg-white col-md-4">
-            <div class="about-product text-center mt-2"><img src="${array.relatedProducts[0].image}" width="300">
-                <div>
-                    <h4>${array.relatedProducts[0].name}</h4>
-                </div>
-            </div>
-        </div>
-        <div class="card p-3 bg-white col-md-4">
-            <div class="about-product text-center mt-2"><img src="${array.relatedProducts[1].image}" width="300">
-                <div>
-                    <h4>${array.relatedProducts[1].name}</h4>
-                </div>
-            </div>
-        </div>
-    `
-    document.getElementById('contenedor').innerHTML = cargarInfoEnHtml;
     document.getElementById('imagenes').innerHTML = cargarImagenesEnHtml;
-    document.getElementById('similares').innerHTML = cargarProductoSimilarEnHtml
+
+
+    // Carga de los productos relacionados
+
+    let cargarProductoSimilarEnHtml = "";
+
+    for(let i = 0; i < array.relatedProducts.length; i ++){
+
+        let similar = array.relatedProducts[i]; 
+
+        cargarProductoSimilarEnHtml += `
+            <div onclick="setProductID(${similar.id})" class="card p-3 bg-white col-md-4">
+                <div class="about-product text-center mt-2"><img src="${similar.image}" width="300">
+                    <div>
+                        <h4>${similar.name}</h4>
+                    </div>
+                </div>
+            </div>
+        `
+    }
+    
+    document.getElementById('similares').innerHTML = cargarProductoSimilarEnHtml;
 }
+
 
 function showComments (array){
     
     let cargarComentariosEnHtml = "";
 
     for(let i = 0; i < array.length; i++){ 
-
                
         let comment = array[i];
-
-
+        
         cargarComentariosEnHtml += `
             <div class= "card p-3 bg-white col-md-4 w-auto h-auto">
                 <div class="d-flex flex-start align-items-center">
@@ -115,7 +130,7 @@ function addComment(){
 
     let newComment = {};
 
-    newComment.user = localStorage.getItem('email');
+    newComment.user = localStorage.getItem('email').split('@')[0];
     newComment.description = document.getElementById('comente').value;
     newComment.dateTime = `${year}-${month}-${day} ${hour}:${minute}:${second}`;
     newComment.score = document.getElementById('puntos').value;
