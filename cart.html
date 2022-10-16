@@ -53,12 +53,61 @@
       </div>
     </div>
   </nav>
-  <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+  <main class="pb-5 container">
+    <div class="text-center"><br>
+      <h2>Carrito de compras</h2>
+    </div>
+    <div class="container h-100 py-5">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                <th scope="col" class="h4">Artículos a comprar</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Subtotal</th>
+                <tr>
+              </thead>
+
+              <!-- Muestra los articulos del carrito -->
+              <tbody id="articulos">
+    
+              </tbody>
+
+            </table>
+          </div>
+        </div>
       </div>
     </div>
+    
+    <!-- Envío y Dirección -->
+    <div class="row">
+      <div class="col-4">
+        <h4>Envío:</h4> 
+            <input type="radio" name="envio" value="1"> Premium 2 a 5 días (15%)<br>
+            <input type="radio" name="envio" value="2"> Express 5 a 8 días (7%)<br>
+            <input type="radio" name="envio" value="3"> Standard 12 a 15 días (5%)<br>
+      </div>
+      <div class="col-8">
+        <h4>Dirección:</h4>
+        <div class="input-group">
+          <span class="input-group-text text-primary bg-light">Calle:</span>
+          <input type="text" class="form-control">
+          <span class="input-group-text text-primary bg-light">N° Puerta/Apto:</span>
+          <input type="text" class="form-control">
+        </div>
+        <div class="col-6 mt-2">
+          <div class="input-group">
+            <span class="input-group-text text-primary bg-light">Esquina:</span>
+            <input class="form-control" type="text">
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
   </main>
   <footer class="text-muted">
     <div class="container">

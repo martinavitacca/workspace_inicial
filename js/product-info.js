@@ -2,6 +2,7 @@ const PROD_ID = localStorage.getItem('ProductID');
 
 let infoProducts = [];
 let comments = [];
+let productToCart = []; //array nuevo para agregar al carrito
 
 
 function setProductID(id) {
@@ -9,7 +10,7 @@ function setProductID(id) {
     location.href = "product-info.html"
 }
 
-function showProductInfo (array){
+function showProductInfo(array) {
 
     cargarInfoEnHtml = `
         <div class="row r1">
@@ -19,11 +20,15 @@ function showProductInfo (array){
             </div>
             <div class="col-md-3 text-right pqr">
                 <p>${array.soldCount} vendidos en la categoría ${array.category}</p>
+                <button type="button" class="btn btn-outline-primary btn-md" onclick="addToCart(infoProducts)"><i class="fas fa-cart-plus"></i>
+                    Add to cart
+                </button>
             </div>
             <div>
                 <p class="text-right para">${array.description}</p>
             </div>
         </div>
+        
     `
     
     document.getElementById('contenedor').innerHTML = cargarInfoEnHtml;
@@ -73,7 +78,7 @@ function showProductInfo (array){
 }
 
 
-function showComments (array){
+function showComments(array) {
     
     let cargarComentariosEnHtml = "";
 
@@ -103,7 +108,7 @@ function showComments (array){
 }
 
 
-function addComment(){
+function addComment() {
     let dateTime = new Date();
     let year = dateTime.getFullYear();
     let month = dateTime.getMonth() + 1;
@@ -145,7 +150,7 @@ function addComment(){
 
 
 
-function puntaje(array){
+function puntaje(array) {
     let puntos = "";
 
     for(let i=1; i <= 5; i++){
@@ -157,6 +162,27 @@ function puntaje(array){
         }
     }
     return puntos;
+}
+
+
+// crea un nuevo objeto, se le asigna propiedades tomadas del json
+//se usa la función con el onclick del button
+
+function addToCart(array) {
+    
+    let newArticle = {};
+    
+    newArticle.id = array.id;
+    newArticle.image = array.images[0];
+    newArticle.name = array.name;
+    newArticle.currency = array.currency;
+    newArticle.unitCost = array.cost;
+    newArticle.count = "1";
+
+    productToCart.push(newArticle); //se agrega al array nuevo
+    localStorage.setItem("carrito", JSON.stringify(productToCart)); //se guarda en local storage como string
+
+    location.href = "cart.html";
 }
 
     
@@ -179,5 +205,12 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
     document.getElementById('send').addEventListener('click', ()=>{
         addComment()
-    })
+    });
+
+    let carrito = localStorage.getItem('carrito');
+
+    if(carrito != null){
+        productToCart = JSON.parse(localStorage.getItem('carrito')); //muestra lo que está guardado
+    }
+
 });
