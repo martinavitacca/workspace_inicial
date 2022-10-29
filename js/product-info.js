@@ -64,8 +64,8 @@ function showProductInfo(array) {
         let similar = array.relatedProducts[i]; 
 
         cargarProductoSimilarEnHtml += `
-            <div onclick="setProductID(${similar.id})" class="card p-3 bg-white col-md-4">
-                <div class="about-product text-center mt-2"><img src="${similar.image}" width="300">
+            <div onclick="setProductID(${similar.id})" class="card p-3 bg-white col-md-2">
+                <div class="about-product text-center mt-2"><img src="${similar.image}" class="card-img-top">
                     <div>
                         <h4>${similar.name}</h4>
                     </div>
@@ -171,13 +171,11 @@ function puntaje(array) {
 function addToCart(array) {
     
     let newArticle = {};
-    
-    newArticle.id = array.id;
+
     newArticle.image = array.images[0];
     newArticle.name = array.name;
     newArticle.currency = array.currency;
     newArticle.unitCost = array.cost;
-    newArticle.count = "1";
 
     productToCart.push(newArticle); //se agrega al array nuevo
     localStorage.setItem("carrito", JSON.stringify(productToCart)); //se guarda en local storage como string

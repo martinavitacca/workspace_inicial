@@ -6,6 +6,9 @@ function login(){
     if (email === "" || pw === ""){
         Swal.fire({
             title: 'Por favor, completar ambos campos',
+            imageUrl: 'img/104423-warning-alert.gif',
+            imageWidth: 200,
+            imageHeigth: 100,
             confirmButtonColor: '#3085d6', 
             showClass: {
               popup: 'animate__animated animate__fadeInDown'
@@ -17,8 +20,10 @@ function login(){
     }
     else {
         Swal.fire({
-            title: 'Sesión iniciada correctamente',
-            icon: 'success',
+            title: 'Sesión iniciada!',
+            imageUrl: 'img/34097-at-hanatachi-sticker-8.gif',
+            imageWidth: 200,
+            imageHeigth: 100,
             confirmButtonColor: '#3085d6',
             showClass: {
               popup: 'animate__animated animate__fadeInDown'

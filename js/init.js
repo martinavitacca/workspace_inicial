@@ -48,6 +48,9 @@ document.addEventListener('DOMContentLoaded', ()=>{
     Swal.fire({
       title: 'Bienvenido!',
       text: 'Por favor, iniciar sesión para continuar',
+      imageUrl: 'img/34136-mafumafu-cat-at-cocopry-sticker-2.gif',
+      imageWidth: 200,
+      imageHeigth: 100,
       confirmButtonColor: '#3085d6',
       showClass: {
         popup: 'animate__animated animate__fadeInDown'
@@ -67,8 +70,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
   document.getElementById("cerrando").addEventListener("click",()=>{
     Swal.fire({
-      icon: 'success',
       title: 'Sesión cerrada con éxito!',
+      imageUrl: 'img/76732-locked-icon.gif',
+      imageWidth: 200,
+      imageHeigth: 100,
       confirmButtonColor: '#3085d6',
       showClass: {
         popup: 'animate__animated animate__fadeInDown'
