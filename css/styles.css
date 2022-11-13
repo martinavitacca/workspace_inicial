@@ -189,10 +189,6 @@ a.custom-card:hover {
   color: orange;
 }
 
-/* #navbarNavDarkDropdown {
-  display: none;
-} */
-
 .card {
   width: 444px;
   margin: 10px;
@@ -200,4 +196,12 @@ a.custom-card:hover {
 
 .estrellas{
   color: gold;
+}
+
+#correo {
+  background-color: white;
+}
+
+#newPayment {
+  background-color: white;
 }

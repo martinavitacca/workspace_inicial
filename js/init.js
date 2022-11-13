@@ -42,8 +42,9 @@ let getJSONData = function(url){
 
 document.addEventListener('DOMContentLoaded', ()=>{
   
-  let email = localStorage.getItem('email')
+  let email = localStorage.getItem('email'); // variable que toma del local lo guardado en email
   
+  // si email es null, pide iniciar sesión
   if(email == null){
     Swal.fire({
       title: 'Bienvenido!',
@@ -60,12 +61,12 @@ document.addEventListener('DOMContentLoaded', ()=>{
       }})
     .then((result) => {
       if (result.isConfirmed) {
-        location.href = 'login.html';
+        location.href = 'login.html'; // redirecciona al login
       };
     });
   }
   else{
-    document.getElementById('usuario').innerHTML = email.split('@')[0];
+    document.getElementById('usuario').innerHTML = email.split('@')[0]; // muestra el email en el navbar del html
   }
 
   document.getElementById("cerrando").addEventListener("click",()=>{
@@ -83,8 +84,9 @@ document.addEventListener('DOMContentLoaded', ()=>{
       }})
     .then((result) => {
       if (result.isConfirmed) {
-        location.href = 'index.html';
-        localStorage.removeItem('email');
+        location.href = 'index.html'; // redirecciona al index
+        localStorage.removeItem('email'); // remueve lo guardado en el local bajo el nombre de email
+        localStorage.removeItem('user'); // remueve lo guardado en el local bajo el nombre de user
       };
     });    
   });

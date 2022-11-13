@@ -22,16 +22,18 @@ function showCartItems(array) {
         }
 
         mostrarCarritoEnHtml += `
-        <th scope="row">
-          <div class="d-flex align-items-center">
+        <th scope="col">
+            <div class="d-flex align-items-center">
                 <img src="${articles.image}" class="img-fluid rounded-3" style="width: 120px;">
-                <div class="flex-column ms-4">
-                    <p class="mb-2">${articles.name}</p>
-                </div>
+            </div>
+        </th>  
+        <th scope="col">      
+            <div class="flex-column ms-4">
+                <p class="mb-2">${articles.name}</p>
             </div>
         </th>
         <td class="align-middle">
-          <p class="mb-0" style="font-weight: 500;">${articles.currency} ${articles.unitCost}</p>
+            <p class="mb-0" style="font-weight: 500;">${articles.currency} ${articles.unitCost}</p>
         </td>
         <td class="align-middle">
             <div class="d-flex flex-row">
@@ -163,8 +165,49 @@ function disable() {
 
 }
 
+// Función para validación de Bootstrap NO TOCAR QUE SINO NO FUNCIONA LA VALIDACIÓN
+(function () {
+    'use strict'
+  
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.querySelectorAll('.needs-validation')
+  
+    // Loop over them and prevent submission
+    Array.prototype.slice.call(forms)
+      .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }else{
+            event.preventDefault()
+            event.stopPropagation()
+            
+            Swal.fire({
+                title: 'Muchas gracias por comprar!',
+                imageUrl: 'img/34134-mafumafu-cat-at-cocopry-sticker-0.gif',
+                imageWidth: 200,
+                imageHeigth: 100,
+                confirmButtonColor: '#3085d6', 
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                }})
+            .then((result) => {
+                if (result.isConfirmed) {
+                    location.href = 'index.html';
+                };
+            });
+          }
+  
+          form.classList.add('was-validated')
+        }, false)
+      })
+})()
 
-
+// DOM EMPIEZA ACÁ
 document.addEventListener('DOMContentLoaded', () =>{
     getJSONData(CART_INFO_URL + "25801" + EXT_TYPE).then(function(resultObj){
         if (resultObj.status === "ok")
@@ -212,14 +255,15 @@ document.addEventListener('DOMContentLoaded', () =>{
     // variable que toma el id del submit button de la Modal
     let successfulPayment = document.getElementById('save');
 
-    successfulPayment.addEventListener('click',(e)=>{
-        if (validatedPayment.checkValidity(e)){ 
-            e.preventDefault();
-            e.stopPropagation();
+    successfulPayment.addEventListener('click',evento=>{
+        if (validatedPayment.checkValidity()){ 
+            evento.preventDefault();
+            evento.stopPropagation();
             
             // iguala el value del input de Sleccionar método de pago y lo iguala al value del título de la Modal 
             // value de título de Modal fué cambiado dentro de la función disable()
             document.getElementById('newPayment').value = document.getElementById('staticBackdropLabel').value;
+            document.getElementById('newPayment').disabled = true;
             
             Swal.fire({
                 title: 'Método de pago ingresado correctamente',
@@ -234,58 +278,7 @@ document.addEventListener('DOMContentLoaded', () =>{
                   popup: 'animate__animated animate__fadeOutUp'
                 }
             });
-        }
-
-
-        // evento del botón de Finalizar Compra
-        document.getElementById('compraste').addEventListener('click',(e)=>{
-            e.preventDefault();
-            e.stopPropagation();
-
-            Swal.fire({
-                title: 'Muchas gracias por comprar!',
-                imageUrl: 'img/34134-mafumafu-cat-at-cocopry-sticker-0.gif',
-                imageWidth: 200,
-                imageHeigth: 100,
-                confirmButtonColor: '#3085d6', 
-                showClass: {
-                    popup: 'animate__animated animate__fadeInDown'
-                },
-                hideClass: {
-                    popup: 'animate__animated animate__fadeOutUp'
-                }})
-            .then((result) => {
-                if (result.isConfirmed) {
-                    location.href = 'index.html';
-                };
-            });
-        
-        });
-    });
+        } 
     
+    });
 });
-
-
-
-// Función para validación de Bootstrap NO TOCAR QUE SINO NO FUNCIONA LA VALIDACIÓN
-(function () {
-    'use strict'
-  
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.querySelectorAll('.needs-validation')
-  
-    // Loop over them and prevent submission
-    Array.prototype.slice.call(forms)
-      .forEach(function (form) {
-        form.addEventListener('submit', function (event) {
-          if (!form.checkValidity()) {
-            event.preventDefault()
-            event.stopPropagation()
-          }
-  
-          form.classList.add('was-validated')
-        }, false)
-      })
-  })()
-
-
